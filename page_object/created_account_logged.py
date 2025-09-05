@@ -8,12 +8,12 @@ class CreatedAccountLogged(BrowserUtils):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.wait = WebDriverWait(driver, 10)
         self.logged_text = (By.XPATH, "//a[contains(., 'Logged in as')]")
         self.delete_account_btn = (By.XPATH, "//a[contains(.,'Delete Account')]")
 
     def verify_logged_in_as(self, data: dict):
-        wait = WebDriverWait(self.driver, 10)
-        element = wait.until(expected_conditions.visibility_of_element_located(self.logged_text))
+        element = self.wait.until(expected_conditions.visibility_of_element_located(self.logged_text))
         actual_text = element.text.strip()
         expected_text = f"Logged in as {data["name"]}"
 
@@ -21,4 +21,4 @@ class CreatedAccountLogged(BrowserUtils):
             f"Expected '{expected_text}', but got '{actual_text}'"
 
     def click_delete_account_button(self):
-        self.driver.find_element(*self.delete_account_btn).click()
+        self.aggressive_safe_click(*self.delete_account_btn)

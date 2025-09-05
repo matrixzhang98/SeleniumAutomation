@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_delete_method_to_delete_user_account(api_base_url):
@@ -11,3 +12,5 @@ def test_delete_method_to_delete_user_account(api_base_url):
 
     assert data["responseCode"] == 200, "Status code is not 200"
     assert data["message"] == "Account deleted!", "Unexpected error message"
+
+    print("Response JSON:", json.dumps(data, indent=2))

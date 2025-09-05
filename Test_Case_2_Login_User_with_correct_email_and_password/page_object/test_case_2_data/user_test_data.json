@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "name": "Rahul",
+      "email": "rahulshettyacademyTestCase2@gmail.com",
+      "password": "abc123"
+    },
+    {
+      "name": "Mentor",
+      "email": "contactTestCase2@rahulshettyacademy.com",
+      "password": "alice456"
+    }
+  ]
+}

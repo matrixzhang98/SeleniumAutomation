@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_post_to_all_products_list(api_base_url):
@@ -10,3 +11,5 @@ def test_post_to_all_products_list(api_base_url):
     assert data["responseCode"] == 405, "Status code is not 405"
 
     assert data["message"] == "This request method is not supported.", "Unexpected error message"
+
+    print("Response JSON:", json.dumps(data, indent=2))

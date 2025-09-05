@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_get_all_brands_list(api_base_url):
@@ -16,3 +17,5 @@ def test_get_all_brands_list(api_base_url):
     assert isinstance(data["brands"], list), "'brands' is not a list"
 
     assert len(data["brands"]) > 0, "'brands' list is empty"
+
+    print("Response JSON:", json.dumps(data, indent=2))

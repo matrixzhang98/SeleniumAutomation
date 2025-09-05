@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_put_method_to_update_user_account(api_base_url):
@@ -28,3 +29,5 @@ def test_put_method_to_update_user_account(api_base_url):
     data = response.json()
     assert data["responseCode"] == 200, "Status code is not 200"
     assert data["message"] == "User updated!", "Unexpected error message"
+
+    print("Response JSON:", json.dumps(data, indent=2))

@@ -8,6 +8,7 @@ class ProductDetailPage(BrowserUtils):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.wait = WebDriverWait(driver, 10)
         self.product_name = (By.XPATH, "//div[@class='product-information']/h2")
         self.category = (By.XPATH, "//div[@class='product-information']/p[1]")
         self.price = (By.XPATH, "//div[@class='product-information']//span/span")
@@ -16,13 +17,27 @@ class ProductDetailPage(BrowserUtils):
         self.brand = (By.XPATH, "//p/b[text()='Brand:']/parent::p")
         self.quantity_input = (By.XPATH, "//input[@id='quantity']")
         self.add_to_cart_button = (By.XPATH, "//button[@type='button']")
+        self.write_your_review_text = (By.XPATH, "//a[text()='Write Your Review']")
+
+        self.review_name = (By.XPATH, "//input[@id='name']")
+        self.review_email = (By.XPATH, "//input[@id='email']")
+        self.review_text = (By.XPATH, "//textarea[@id='review']")
+        self.submit_review_button = (By.XPATH, "//button[@id='button-review']")
+        self.review_success_message = (By.XPATH, "//span[text()='Thank you for your review.']")
         self.added_products = []
 
     def verify_product_detail_page_by_url(self):
         actual_url = self.driver.current_url
-
         assert "product_details" in actual_url.lower(), \
             f"Unexpected URL: {actual_url}"
+
+    def verify_write_your_review_text_is_visible(self):
+        write_your_review_text = self.wait.until(expected_conditions.visibility_of_element_located(self.write_your_review_text))
+        assert write_your_review_text.is_displayed(), "Write Your Review text is not visible"
+
+    def verify_success_message_is_visible(self):
+        success_message = self.wait.until(expected_conditions.visibility_of_element_located(self.review_success_message))
+        assert success_message.is_displayed(), "Success message is not visible"
 
     def verify_product_details_are_visible(self):
         element = {
@@ -35,8 +50,7 @@ class ProductDetailPage(BrowserUtils):
         }
 
         for label, locator in element.items():
-            wait = WebDriverWait(self.driver, 10)
-            el = wait.until(expected_conditions.visibility_of_element_located(locator))
+            el = self.wait.until(expected_conditions.visibility_of_element_located(locator))
             text = el.text.strip()
             assert text != "", f"{label} text is empty"
             print(f"{label} verified: {text}")
@@ -86,3 +100,11 @@ class ProductDetailPage(BrowserUtils):
 
         self.driver.find_element(*self.add_to_cart_button).click()
         return product_info
+
+    def enter_review_info(self, data: dict):
+        self.driver.find_element(*self.review_name).send_keys(data["name"])
+        self.driver.find_element(*self.review_email).send_keys(data["email"])
+        self.driver.find_element(*self.review_text).send_keys(data["review_text"])
+
+    def click_review_submit_button(self):
+        self.safe_click(*self.submit_review_button)

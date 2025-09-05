@@ -1,0 +1,5 @@
+若要重複測試，需先登入清空購物車才可進行同一支帳號的測試，否則會有數量上的問題
+
+If you want to repeat the test,
+you must log in and empty the shopping cart before you can test the same account,
+otherwise there will be a problem with the quantity.

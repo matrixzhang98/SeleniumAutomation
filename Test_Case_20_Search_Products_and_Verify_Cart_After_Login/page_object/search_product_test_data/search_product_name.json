@@ -1,9 +1,15 @@
 {
   "data": [
     {
+      "name": "Rahul",
+      "email": "rahulshettyacademyTestCase20@gmail.com",
+      "password": "abc123",
       "product_name": "Top"
     },
     {
+      "name": "Mentor",
+      "email": "contactTestCase20@rahulshettyacademy.com",
+      "password": "alice456",
       "product_name": "Sleeves"
     }
   ]

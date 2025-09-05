@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_post_to_verify_login_with_valid_details(api_base_url):
@@ -13,3 +14,5 @@ def test_post_to_verify_login_with_valid_details(api_base_url):
 
     assert data["responseCode"] == 200, "Status code is not 200"
     assert data["message"] == "User exists!", "Unexpected error message"
+
+    print("Response JSON:", json.dumps(data, indent=2))

@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_post_to_verify_login_without_email_parameter(api_base_url):
@@ -10,3 +11,5 @@ def test_post_to_verify_login_without_email_parameter(api_base_url):
 
     assert data["responseCode"] == 400, "Status code is not 400"
     assert data["message"] == "Bad request, email or password parameter is missing in POST request.", "Unexpected error message"
+
+    print("Response JSON:", json.dumps(data, indent=2))

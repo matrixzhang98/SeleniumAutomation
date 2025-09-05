@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_post_to_create_register_user_account(api_base_url):
@@ -30,3 +31,5 @@ def test_post_to_create_register_user_account(api_base_url):
 
     assert data["responseCode"] == 201, "Status code is not 201"
     assert data["message"] == "User created!", "Unexpected error message"
+
+    print("Response JSON:", json.dumps(data, indent=2))

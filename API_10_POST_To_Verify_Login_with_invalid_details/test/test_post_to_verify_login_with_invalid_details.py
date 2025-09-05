@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_post_to_verify_login_with_invalid_details(api_base_url):
@@ -12,3 +13,5 @@ def test_post_to_verify_login_with_invalid_details(api_base_url):
 
     assert data["responseCode"] == 404, "Status code is not 404"
     assert data["message"] == "User not found!", "Unexpected error message"
+
+    print("Response JSON:", json.dumps(data, indent=2))

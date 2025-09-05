@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_post_to_search_product(api_base_url):
@@ -22,3 +23,5 @@ def test_post_to_search_product(api_base_url):
     )
 
     assert has_keywords, "keywords are not found in product name or category"
+
+    print("Response JSON:", json.dumps(data, indent=2))

@@ -1,0 +1,12 @@
+{
+  "data": [
+    {
+      "indexes": [1,3,5],
+      "remove_indexes": [1,5]
+    },
+    {
+      "indexes": [2,4,6],
+      "remove_indexes": [2,6]
+    }
+  ]
+}

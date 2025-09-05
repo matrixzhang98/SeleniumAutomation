@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "name": "Rahul",
+      "email": "rahulshettyacademyTestCase23@gmail.com",
+      "gender": "male",
+      "password": "abc123",
+      "day": "15",
+      "month": "July",
+      "year": "1995",
+      "newsletter": true,
+      "special_offers": true,
+      "first_name": "Tom",
+      "last_name": "Smith",
+      "company": "Microsoft",
+      "address": "Microsoft Headquarters, One Microsoft Way, Redmond, WA 98052 United States",
+      "address2": "Building 92, Floor 3",
+      "country": "Canada",
+      "state": "Ontario",
+      "city": "Toronto",
+      "zipcode": "M4B1B3",
+      "mobile_number": "1234567890",
+      "indexes": [1,3,5]
+    },
+    {
+      "name": "Mentor",
+      "email": "contactTestCase23@rahulshettyacademy.com",
+      "gender": "female",
+      "password": "alice456",
+      "day": "22",
+      "month": "March",
+      "year": "1990",
+      "newsletter": true,
+      "special_offers": true,
+      "first_name": "Alice",
+      "last_name": "Johnson",
+      "company": "TikTok",
+      "address": "10th Floor, Building 1, Zhonghang Square, Beijing, China",
+      "address2": "Tower A, Room 210",
+      "country": "India",
+      "state": "Karnataka",
+      "city": "Bangalore",
+      "zipcode": "560001",
+      "mobile_number": "9876543210",
+      "indexes": [2,4,6]
+    }
+  ]
+}

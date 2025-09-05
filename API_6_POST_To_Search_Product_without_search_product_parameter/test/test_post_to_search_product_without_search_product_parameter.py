@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def test_post_to_search_product_without_search_product_parameter(api_base_url):
@@ -9,3 +10,5 @@ def test_post_to_search_product_without_search_product_parameter(api_base_url):
 
     assert data["responseCode"] == 400, "Status code is not 400"
     assert data["message"] == "Bad request, search_product parameter is missing in POST request.", "Unexpected error message"
+
+    print("Response JSON:", json.dumps(data, indent=2))
