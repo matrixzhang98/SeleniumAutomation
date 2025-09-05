@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "category": "WOMEN",
+      "subcategory": "DRESS"
+    },
+    {
+      "category": "WOMEN",
+      "subcategory": "TOPS"
+    },
+    {
+      "category": "WOMEN",
+      "subcategory": "SAREE"
+    },
+    {
+      "category": "MEN",
+      "subcategory": "TSHIRTS"
+    },
+    {
+      "category": "MEN",
+      "subcategory": "JEANS"
+    },
+    {
+      "category": "KIDS",
+      "subcategory": "DRESSES"
+    },
+    {
+      "category": "KIDS",
+      "subcategory": "TOPS & SHIRTS"
+    }
+  ]
+}
