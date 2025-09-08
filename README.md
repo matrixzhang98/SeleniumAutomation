@@ -49,12 +49,14 @@ SeleniumAutomation/
 │         └──test_*.py  
 │   
 ├── conftest.py     # Pytest configuration
+├── .gitignore
 ├── __init__.py
 ├── Jenkinsfile
 ├── requirements.txt
+├── setup.py
 ├── .pytest.ini 
 ├── README_CN.md     
-└── README_EN.md
+└── README.md
 ```
 ## 🏗️ Design Highlights:
 * Based on the **Page Object Model (POM)** design pattern.

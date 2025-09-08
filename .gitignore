@@ -221,8 +221,16 @@ Thumbs.db
 allure-results/
 report/
 screenshots/
+allure-report/
+**/allure-results/
 
 # === Python ===
 *.py[cod]
 *.pyo
 *.pyd
+*.pyc
+
+*.jpg
+*.png
+.cache/
+

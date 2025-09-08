@@ -91,13 +91,26 @@ pipeline {
     }
 
     stages {
+        stage('Echo Parameters') {
+            steps {
+                bat '''
+                echo BROWSER: %BROWSER%
+                echo HEADLESS: %HEADLESS%
+                echo TEST_FILE: %TEST_FILE%
+                echo TEST_CASE: %TEST_CASE%
+                '''
+            }
+        }
+
         stage('Setup Python Environment') {
             steps {
                 bat '''
-                python -m venv venv
+                cd SeleniumAutomation
                 call venv\\Scripts\\activate
+                python --version
                 pip install --upgrade pip
                 pip install -r requirements.txt
+                pip install .
                 '''
             }
         }
@@ -105,21 +118,26 @@ pipeline {
         stage('Run Tests') {
             steps {
                 bat '''
+                cd SeleniumAutomation
                 call venv\\Scripts\\activate
+                setlocal EnableDelayedExpansion
 
+                set HEADLESS_OPTION=
                 if "%HEADLESS%"=="headless" (
                     set HEADLESS_OPTION=--headless
                 ) else (
-                    set HEADLESS_OPTION=
-                )
+					set HEADLESS_OPTION=
+				)
+
+                REM 清除舊的 Allure 結果
+                del /Q %TEST_CASE%\\report\\allure-results\\*
 
                 pytest %TEST_FILE%.py ^
                   --browser_name=%BROWSER% ^
-                  %HEADLESS_OPTION% ^
-                  --alluredir=SeleniumAutomation\\%TEST_CASE%\\report\\allure-results
+                  !HEADLESS_OPTION! ^
+                  --alluredir=%TEST_CASE%\\report\\allure-results
 
-                echo ================= Allure Result Files =================
-                dir /s /b SeleniumAutomation\\%TEST_CASE%\\report\\allure-results
+                dir /s /b %TEST_CASE%\\report\\allure-results
                 '''
             }
         }
@@ -127,7 +145,7 @@ pipeline {
         stage('Allure Report') {
             steps {
                 allure([
-                    includeProperties: false,
+                    includeProperties: true,
                     results: [[path: "SeleniumAutomation\\${params.TEST_CASE}\\report\\allure-results"]]
                 ])
             }
