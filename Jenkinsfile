@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     parameters {
-        choice(name: 'BROWSER', choices: ['brave', 'chrome', 'edge', 'firefox'], description: '指定測試瀏覽器')
-        choice(name: 'HEADLESS', choices: ['normal', 'headless'], description: '是否使用 headless 模式')
+        choice(name: 'BROWSER', choices: ['brave', 'chrome', 'edge', 'firefox'], description: 'Choose the browser(指定測試瀏覽器)')
+        choice(name: 'HEADLESS', choices: ['normal', 'headless'], description: 'Choose the head mode(是否使用 headless 模式)')
         choice(name: 'TEST_CASE', choices: [
             'Test_Case_1_Register_User',
             'Test_Case_2_Login_User_with_correct_email_and_password',
@@ -142,11 +142,17 @@ pipeline {
             }
         }
 
+        stage('Debug Allure Results Path') {
+            steps {
+                bat "dir /s /b ${params.TEST_CASE}\\report\\allure-results"
+            }
+        }
+
         stage('Allure Report') {
             steps {
                 allure([
                     includeProperties: true,
-                    results: [[path: "SeleniumAutomation\\${params.TEST_CASE}\\report\\allure-results"]]
+                    results: [[path: "${params.TEST_CASE}\\report\\allure-results"]]
                 ])
             }
         }

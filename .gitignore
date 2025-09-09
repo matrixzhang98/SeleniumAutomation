@@ -48,7 +48,6 @@ coverage.xml
 *.cover
 *.py.cover
 .hypothesis/
-.pytest_cache/
 cover/
 
 # Translations
@@ -217,20 +216,28 @@ __marimo__/
 .DS_Store
 Thumbs.db
 
-# === 測試報告與截圖 ===
-allure-results/
-report/
-screenshots/
+# 忽略報告輸出，不忽略目錄本身
 allure-report/
-**/allure-results/
+# 保留 report 目錄，但忽略其中的結果內容
+**/report/allure-report/
+**/report/allure-results/
+
+**/screenshots/*.png
+**/screenshots/*.jpg
+
+# 忽略 allure 測試報告中產生的 HTML
+**/allure-report/*.html
+**/report/*.html
+
+# 忽略測試用輸出 XML
+**/report/*.xml
+**/*.xml
+
 
 # === Python ===
 *.py[cod]
 *.pyo
 *.pyd
 *.pyc
-
-*.jpg
-*.png
 .cache/
-
+.pytest_cache/
