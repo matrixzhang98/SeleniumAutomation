@@ -4,11 +4,13 @@
 [![Selenium](https://img.shields.io/badge/Selenium-4.31.0-green.svg)](https://www.selenium.dev/)
 [![Pytest](https://img.shields.io/badge/Pytest-8.4.0-9cf.svg)](https://docs.pytest.org/)
 
-🌐 **Test Website**: [Automation Exercise](https://www.automationexercise.com/)
+🌐 **Test Website**: [Automation Exercise](https://www.automationexercise.com/)  
+
+![img.png](assets/image/home_page.png)
 
 ## 📋 Project Overview
 
-A full-featured web automation testing framework built with **Python + Selenium + Pytest**, focused on automating e-commerce workflows.
+A full-featured web automation testing framework built with **Python + Selenium + Pytest + Allure + Jenkins**, focused on automating e-commerce workflows.
 Covers end-to-end scenarios like user registration, login, product search, add-to-cart, and checkout.
 Test scripts are written based on actual test cases provided by the website.
 
@@ -27,6 +29,10 @@ SeleniumAutomation/
 │        └──__init__.py
 │        └──page_factory.py 
 │        └── ...    
+│
+├── assets/  
+│   └── image
+│        └──*.png
 │
 ├── config/         # Configuration files
 │        └──__init__.py
@@ -156,7 +162,8 @@ pip install .
 #### Method 1: Run a Single Test Case
 ```bash
 # Basic syntax
-pytest <TEST_FILE>.py --browser_name=<browser> [--headless]
+# TEST_FILE number must match TEST_CASE number
+pytest <TEST_FILE>.py --browser_name=<browser> [--headless] --alluredir=<TEST_CASE>/report/allure-results
 
 # Example: Run user registration test using Chrome
 pytest Test_Case_1_Register_User/test/test_end_to_end_register.py --browser_name=chrome
@@ -195,6 +202,48 @@ allure serve Test_Case_1_Register_User/report/allure-results
 | `--headless`     | `normal`, `headless`                 | Enable headless mode (no UI browser window) |
 
 ### 📁 Test Case List
+
+#### TEST_CASE
+- `Test_Case_1_Register_User`
+- `Test_Case_2_Login_User_with_correct_email_and_password`
+- `Test_Case_3_Login_User_with_incorrect_email_and_password`
+- `Test_Case_4_Logout_User`
+- `Test_Case_5_Register_User_with_existing_email`
+- `Test_Case_6_Contact_Us_Form`
+- `Test_Case_7_Verify_Test_Cases_Page`
+- `Test_Case_8_Verify_All_Products_and_product_detail_page`
+- `Test_Case_9_Search_Product`
+- `Test_Case_10_Verify_Subscription_in_home_page`
+- `Test_Case_11_Verify_Subscription_in_Cart_page`
+- `Test_Case_12_Add_Products_in_Cart`
+- `Test_Case_13_Verify_Product_quantity_in_Cart`
+- `Test_Case_14_Place_Order_Register_while_Checkout`
+- `Test_Case_15_Place_Order_Register_before_Checkout`
+- `Test_Case_16_Place_Order_Login_before_Checkout`
+- `Test_Case_17_Remove_Products_From_Cart`
+- `Test_Case_18_View_Category_Products`
+- `Test_Case_19_View_and_Cart_Brand_Products`
+- `Test_Case_20_Search_Products_and_Verify_Cart_After_Login`
+- `Test_Case_21_Add_review_on_product`
+- `Test_Case_22_Add_to_cart_from_Recommended_items`
+- `Test_Case_23_Verify_address_details_in_checkout_page`
+- `Test_Case_24_Download_Invoice_after_purchase_order`
+- `Test_Case_25_Verify_Scroll_Up_using_Arrow_button_and_Scroll_Down_functionality`
+- `Test_Case_26_Verify_Scroll_Up_without_Arrow_button_and_Scroll_Down_functionality`
+- `API_1_Get_All_Products_List`
+- `API_2_POST_To_All_Products_List`
+- `API_3_Get_All_Brands_List`
+- `API_4_PUT_To_All_Brands_List`
+- `API_5_POST_To_Search_Product`
+- `API_6_POST_To_Search_Product_without_search_product_parameter`
+- `API_7_POST_To_Verify_Login_with_valid_details`
+- `API_8_POST_To_Verify_Login_without_email_parameter`
+- `API_9_DELETE_To_Verify_Login`
+- `API_10_POST_To_Verify_Login_with_invalid_details`
+- `API_11_POST_To_Create_Register_User_Account`
+- `API_12_DELETE_METHOD_To_Delete_User_Account`
+- `API_13_PUT_METHOD_To_Update_User_Account`
+- `API_14_GET_user_account_detail_by_email`
 
 #### TEST_FILE - Web Automation Tests (26 Cases)
 - `Test_Case_1_Register_User/test/test_end_to_end_register`
@@ -300,8 +349,15 @@ This project integrates with Jenkins for continuous integration, and supports:
 
 #### 4️⃣ View Allure Test Report
 After execution, Allure report will be auto-generated and displayed in Jenkins build page.
+![test_case_1.png](assets/image/test_case_1.png)
 
----
+![allure_page.png](assets/image/allure_page.png)
+
+![test_case_1_allure_report.png](assets/image/test_case_1_allure_report.png)
+
+![test_case_1_allure_report_details.png](assets/image/test_case_1_allure_report_details_1.png)  
+
+![img.png](assets/image/test_case_1_allure_report_details_2.png)  
 
 ### 🛠️ What Does the Jenkins Pipeline Do?
 When Jenkins runs this project, it automatically:
