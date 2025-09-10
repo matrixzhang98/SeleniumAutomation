@@ -125,16 +125,16 @@ pipeline {
                 set HEADLESS_OPTION=
                 if "%HEADLESS%"=="headless" (
                     set HEADLESS_OPTION=--headless
-                ) else (
-					set HEADLESS_OPTION=
-				)
+                )
+
+                echo [DEBUG] HEADLESS_OPTION = [%HEADLESS_OPTION%]
 
                 REM 清除舊的 Allure 結果
                 del /Q %TEST_CASE%\\report\\allure-results\\*
 
                 pytest %TEST_FILE%.py ^
                   --browser_name=%BROWSER% ^
-                  !HEADLESS_OPTION! ^
+                  %HEADLESS_OPTION% ^
                   --alluredir=%TEST_CASE%\\report\\allure-results
 
                 dir /s /b %TEST_CASE%\\report\\allure-results
