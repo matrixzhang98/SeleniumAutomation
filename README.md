@@ -353,15 +353,23 @@ This project integrates with Jenkins for continuous integration, and supports:
 
 #### 4️⃣ View Allure Test Report
 After execution, Allure report will be auto-generated and displayed in Jenkins build page.
-![test_case_1.png](assets/image/test_case_1.png)
+![test_case_1.png](assets/image/test_case_1.png)  
+*Picture 1：Test case picture（test_case_1.png）*
 
-![allure_page.png](assets/image/allure_page.png)
+![JenkinsParameterized.png](assets/image/JenkinsParameterized.png)
+*Picture 2：Jenkins Parameterized Setting（JenkinsParameterized.png）*
 
-![test_case_1_allure_report.png](assets/image/test_case_1_allure_report.png)
+![allure_page.png](assets/image/allure_page.png)  
+*Picture 3：Allure Page（allure_page.png）*
 
-![test_case_1_allure_report_details.png](assets/image/test_case_1_allure_report_details_1.png)  
+![test_case_1_allure_report.png](assets/image/test_case_1_allure_report.png)  
+*Picture 4：Test case 1 allure report（test_case_1_allure_report.png）*
 
-![img.png](assets/image/test_case_1_allure_report_details_2.png)  
+![test_case_1_allure_report_details.png](assets/image/test_case_1_allure_report_details_1.png)
+*Picture 5：Test case 1 allure report details（test_case_1_allure_report_details.png）*
+
+![test_case_1_allure_report_details.png](assets/image/test_case_1_allure_report_details_2.png)  
+*Picture 6：Test case 1 allure report details 2（test_case_1_allure_report_details_2.png）*  
 
 ### 🛠️ What Does the Jenkins Pipeline Do?
 When Jenkins runs this project, it automatically:

@@ -354,14 +354,23 @@ allure serve Test_Case_1_Register_User/report/allure-results
 #### 4️⃣ 查看 Allure 測試報告
 執行完畢後，在 Jenkins 的「建置頁面」中會自動產生並顯示 Allure 報告。  
 ![test_case_1.png](assets/image/test_case_1.png)  
+*圖 1：測試案例一的圖片（test_case_1.png）*
+
+![JenkinsParameterized.png](assets/image/JenkinsParameterized.png)
+*圖 2：Jenkins 的參數化設置（JenkinsParameterized.png）*
 
 ![allure_page.png](assets/image/allure_page.png)  
+*圖 3：Allure 報告頁面（allure_page.png）*
 
 ![test_case_1_allure_report.png](assets/image/test_case_1_allure_report.png)  
+*圖 4：測試案例一的 allure 報告（test_case_1_allure_report.png）*
 
 ![test_case_1_allure_report_details.png](assets/image/test_case_1_allure_report_details_1.png)
+*圖 5：測試案例一的 allure 報告詳細資料 1（test_case_1_allure_report_details.png）*
 
-![img.png](assets/image/test_case_1_allure_report_details_2.png)  
+![test_case_1_allure_report_details.png](assets/image/test_case_1_allure_report_details_2.png)  
+*圖 6：測試案例一的 allure 報告詳細資料 2（test_case_1_allure_report_details_2.png）*  
+
 ### 🛠️ Jenkins Pipeline 做了什麼？
 當 Jenkins 執行此專案時，會自動：
 
