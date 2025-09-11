@@ -50,7 +50,8 @@ def get_firefox_options(headless):
     options.set_preference("privacy.trackingprotection.enabled", True)  # 啟用追蹤防護 # noqa
 
     if headless:
-        options.headless = True
+        options.add_argument("--headless")  # ✅ 推薦寫法
+        options.add_argument("--window-size=1920,1080")  # 建議加這行避免渲染異常
 
     return options
 
@@ -59,7 +60,7 @@ def pytest_addoption(parser):
         "--browser_name",
         action="store",
         default="brave",
-        help="Choose browser: chrome, edge, brave"
+        help="Choose browser: brave, chrome, edge, firefox"
     )
     parser.addoption(
         "--headless",
