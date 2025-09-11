@@ -14,6 +14,10 @@ A full-featured web automation testing framework built with **Python + Selenium 
 Covers end-to-end scenarios like user registration, login, product search, add-to-cart, and checkout.
 Test scripts are written based on actual test cases provided by the website.
 
+## 🎥 Demo Video
+
+👉 [Watch Demo on Google Drive](https://drive.google.com/file/d/1bNTyvdDiwEorj8R1WAfAD__ml3GZUSTD/view?usp=drive_link)
+
 ## 🏗️ Project Structure
 
 ```

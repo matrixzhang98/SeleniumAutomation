@@ -14,6 +14,10 @@
 專案涵蓋了從使用者註冊、登入、商品搜索到結帳流程的完整測試場景。
 根據網站的測試案例編寫測試代碼。
 
+## 🎥 Demo Video
+
+👉 [Watch Demo on Google Drive](https://drive.google.com/file/d/1bNTyvdDiwEorj8R1WAfAD__ml3GZUSTD/view?usp=drive_link)
+
 ## 🏗️ 專案結構
 
 ```
