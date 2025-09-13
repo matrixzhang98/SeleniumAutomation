@@ -3,15 +3,15 @@ from pathlib import Path
 from datetime import datetime
 from selenium import webdriver
 from SeleniumAutomation.config import config
+# ⬇️ 我們只需要從 selenium.webdriver.chrome.service 導入 Service
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from SeleniumAutomation.page_object.page_factory import PageFactory
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+
+# ⬆️ 不再需要導入 webdriver_manager
 
 def get_brave_options(headless):
     options = ChromeOptions()
@@ -109,7 +109,6 @@ def add_common_arguments(options, headless=False):
         options.add_argument("--disable-gpu")
         options.add_argument("--window-size=1920,1080")
 
-
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -142,41 +141,43 @@ def browser_instance(request, web_base_url):
     browser_name = request.config.getoption("browser_name")
     headless = request.config.getoption("headless")
 
+    # ⬇️ 核心修改：不再呼叫 DriverManager，直接傳入空的 Service()
     if browser_name == "brave":
         options = get_brave_options(headless=headless)
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        driver = webdriver.Chrome(service=Service(), options=options)
     elif browser_name == "chrome":
         options = get_chrome_options(headless=headless)
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        driver = webdriver.Chrome(service=Service(), options=options)
     elif browser_name == "edge":
         options = get_edge_options(headless=headless)
-        driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=options)
+        driver = webdriver.Edge(service=Service(), options=options)
     elif browser_name == "firefox":
         options = get_firefox_options(headless=headless)
-        driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=options)
+        driver = webdriver.Firefox(service=Service(), options=options)
+    # ⬆️ Selenium Manager 會自動處理驅動程式的下載與路徑
     else:
-        raise Exception("browser_name should be chrome, edge, brave")
+        raise Exception("browser_name should be chrome, edge, brave, or firefox")
 
     driver.maximize_window()
     driver.implicitly_wait(4)
     driver.get(web_base_url)
 
     driver.execute_script("""
-    const ads = document.querySelectorAll('iframe, #aswift_1_host, #aswift_2_host, .adsbygoogle, .ad-container, [id^="google_ads"], [id^="aswift_"]');
-    ads.forEach(ad => ad.remove());
-    """) # noqa
+                          const ads = document.querySelectorAll('iframe, #aswift_1_host, #aswift_2_host, .adsbygoogle, .ad-container, [id^="google_ads"], [id^="aswift_"]');
+                          ads.forEach(ad => ad.remove());
+                          """) # noqa
 
     # ✅ 移除 Google 密碼彈窗 + 持續監控避免再次出現（防止遮擋測試元素）
     driver.execute_script("""
-    const pwDialogs = document.querySelectorAll('div[aria-label="Save password?"], div[role="dialog"]');
-    pwDialogs.forEach(d => d.remove());
-    
-    const observer = new MutationObserver(() => {
-        const dialogs = document.querySelectorAll('div[aria-label="Save password?"], div[role="dialog"]');
-        dialogs.forEach(d => d.remove());
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    """)
+                          const pwDialogs = document.querySelectorAll('div[aria-label="Save password?"], div[role="dialog"]');
+                          pwDialogs.forEach(d => d.remove());
+
+                          const observer = new MutationObserver(() => {
+                              const dialogs = document.querySelectorAll('div[aria-label="Save password?"], div[role="dialog"]');
+                              dialogs.forEach(d => d.remove());
+                          });
+                          observer.observe(document.body, { childList: true, subtree: true });
+                          """)
 
     yield driver
     driver.quit()
