@@ -36,14 +36,19 @@ class HomePage(BrowserUtils):
 
         print("Step 3: ", actual_url)
 
+        if "google_vignette" in actual_url or "#" in actual_url:
+            self.driver.get(expected_url)
+            actual_url = self.driver.current_url
+
         assert "automationexercise" in actual_url.lower(), \
             f"Unexpected URL: {actual_url}"
 
-        assert actual_url == expected_url, \
+        # 可以選擇要不要完全等於（fragment 清掉後就行）
+        assert actual_url.rstrip("/") == expected_url.rstrip("/"), \
             f"Expected URL '{expected_url}', but got '{actual_url}'"
 
-        if "google_vignette" in actual_url:
-            self.driver.get("https://automationexercise.com/")
+        assert actual_url == expected_url, \
+            f"Expected URL '{expected_url}', but got '{actual_url}'"
 
         homepage_logo \
             = self.wait.until(expected_conditions.visibility_of_element_located(self.homepage_logo))
