@@ -42,6 +42,9 @@ class HomePage(BrowserUtils):
         assert actual_url == expected_url, \
             f"Expected URL '{expected_url}', but got '{actual_url}'"
 
+        if "google_vignette" in actual_url:
+            self.driver.get("https://automationexercise.com/")
+
         homepage_logo \
             = self.wait.until(expected_conditions.visibility_of_element_located(self.homepage_logo))
 
